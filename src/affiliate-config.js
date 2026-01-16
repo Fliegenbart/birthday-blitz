@@ -73,12 +73,25 @@ export const affiliateConfig = {
       });
       return `${affiliateConfig.zalando.baseUrl}?${params.toString()}`;
     }
+  },
+
+  temu: {
+    name: "Temu",
+    baseUrl: "https://www.temu.com/search_result.html",
+    affiliateId: "DEIN-TEMU-ID", // Ersetze mit deiner Temu Affiliate-ID
+    searchParam: "search_key",
+    buildUrl: (searchTerm) => {
+      const params = new URLSearchParams({
+        search_key: searchTerm
+      });
+      return `${affiliateConfig.temu.baseUrl}?${params.toString()}`;
+    }
   }
 };
 
 /**
  * Hilfsfunktion um den passenden Affiliate-Link zu generieren
- * @param {string} shopName - Name des Shops (Amazon, Etsy, Thomann, Douglas, Zalando)
+ * @param {string} shopName - Name des Shops (Amazon, Etsy, Thomann, Douglas, Zalando, Temu)
  * @param {string} searchTerm - Suchbegriff für das Produkt
  * @returns {string} - Vollständiger Affiliate-Link
  */
