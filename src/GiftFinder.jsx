@@ -245,37 +245,174 @@ export default function GiftFinder() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap');
+
         * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
         }
-        
+
+        :root {
+          --neon-pink: #FF2E9F;
+          --electric-blue: #00D4FF;
+          --lime-pop: #BFFF00;
+          --hot-orange: #FF6B35;
+          --purple-party: #A855F7;
+          --dark-base: #0D0D1A;
+        }
+
         .app {
           min-height: 100vh;
-          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-          font-family: 'DM Sans', sans-serif;
+          background: var(--dark-base);
+          font-family: 'Outfit', sans-serif;
           color: #fff;
           overflow-x: hidden;
           position: relative;
         }
-        
-        .app::before {
-          content: '';
+
+        /* Funky animated background */
+        .funky-bg {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background-image: 
-            radial-gradient(circle at 20% 80%, rgba(255, 177, 153, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 218, 185, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(255, 140, 105, 0.05) 0%, transparent 30%);
+          overflow: hidden;
           pointer-events: none;
+          z-index: 0;
         }
-        
+
+        .funky-bg::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background:
+            radial-gradient(circle at 30% 70%, rgba(255, 46, 159, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.12) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(191, 255, 0, 0.08) 0%, transparent 50%);
+          animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+          0%, 100% { transform: scale(1) rotate(0deg); }
+          50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .shape {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(1px);
+          opacity: 0.7;
+        }
+
+        .shape-1 {
+          width: 300px;
+          height: 300px;
+          background: linear-gradient(135deg, var(--neon-pink), var(--purple-party));
+          top: -100px;
+          right: -100px;
+          animation: float1 12s ease-in-out infinite;
+        }
+
+        .shape-2 {
+          width: 200px;
+          height: 200px;
+          background: linear-gradient(135deg, var(--electric-blue), var(--lime-pop));
+          bottom: 10%;
+          left: -80px;
+          animation: float2 10s ease-in-out infinite;
+        }
+
+        .shape-3 {
+          width: 150px;
+          height: 150px;
+          background: linear-gradient(135deg, var(--hot-orange), var(--neon-pink));
+          top: 40%;
+          right: -60px;
+          animation: float3 14s ease-in-out infinite;
+        }
+
+        .shape-4 {
+          width: 100px;
+          height: 100px;
+          background: linear-gradient(135deg, var(--lime-pop), var(--electric-blue));
+          bottom: 20%;
+          right: 20%;
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          animation: float4 8s ease-in-out infinite, morph 6s ease-in-out infinite;
+        }
+
+        .shape-5 {
+          width: 80px;
+          height: 80px;
+          background: var(--purple-party);
+          top: 20%;
+          left: 10%;
+          border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+          animation: float5 11s ease-in-out infinite, morph 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes float1 {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          33% { transform: translate(-30px, 50px) rotate(10deg); }
+          66% { transform: translate(20px, -30px) rotate(-5deg); }
+        }
+
+        @keyframes float2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(40px, -40px) scale(1.1); }
+        }
+
+        @keyframes float3 {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-60px) rotate(15deg); }
+        }
+
+        @keyframes float4 {
+          0%, 100% { transform: translate(0, 0); }
+          25% { transform: translate(-20px, 30px); }
+          75% { transform: translate(30px, -20px); }
+        }
+
+        @keyframes float5 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(25px, 35px) scale(0.9); }
+        }
+
+        @keyframes morph {
+          0%, 100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+          50% { border-radius: 37% 63% 46% 54% / 48% 55% 45% 52%; }
+        }
+
+        /* Confetti particles */
+        .confetti {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          opacity: 0.8;
+        }
+
+        .confetti-1 { background: var(--neon-pink); top: 15%; left: 20%; animation: confettiFall 7s linear infinite; animation-delay: 0s; }
+        .confetti-2 { background: var(--electric-blue); top: 10%; left: 40%; animation: confettiFall 9s linear infinite; animation-delay: 1s; border-radius: 50%; }
+        .confetti-3 { background: var(--lime-pop); top: 5%; left: 60%; animation: confettiFall 8s linear infinite; animation-delay: 2s; }
+        .confetti-4 { background: var(--hot-orange); top: 12%; left: 75%; animation: confettiFall 10s linear infinite; animation-delay: 0.5s; border-radius: 50%; }
+        .confetti-5 { background: var(--purple-party); top: 8%; left: 85%; animation: confettiFall 7.5s linear infinite; animation-delay: 1.5s; }
+        .confetti-6 { background: var(--neon-pink); top: 3%; left: 30%; animation: confettiFall 11s linear infinite; animation-delay: 3s; border-radius: 50%; }
+        .confetti-7 { background: var(--electric-blue); top: 18%; left: 55%; animation: confettiFall 8.5s linear infinite; animation-delay: 2.5s; }
+        .confetti-8 { background: var(--lime-pop); top: 7%; left: 90%; animation: confettiFall 9.5s linear infinite; animation-delay: 4s; border-radius: 50%; }
+
+        @keyframes confettiFall {
+          0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+          25% { transform: translateY(25vh) rotate(90deg) scale(0.8); }
+          50% { transform: translateY(50vh) rotate(180deg) scale(1); opacity: 0.6; }
+          75% { transform: translateY(75vh) rotate(270deg) scale(0.9); }
+          100% { transform: translateY(100vh) rotate(360deg) scale(1); opacity: 0; }
+        }
+
         .container {
           max-width: 800px;
           margin: 0 auto;
@@ -287,88 +424,148 @@ export default function GiftFinder() {
           position: relative;
           z-index: 1;
         }
-        
+
         /* Start Screen */
         .start-screen {
           text-align: center;
           animation: fadeIn 0.8s ease-out;
         }
-        
+
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(30px) scale(0.95); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        
+
         .logo {
-          font-size: 4rem;
-          margin-bottom: 16px;
-          animation: bounce 2s ease-in-out infinite;
+          font-size: 5rem;
+          margin-bottom: 20px;
+          animation: logoPop 2s ease-in-out infinite;
+          filter: drop-shadow(0 0 20px rgba(255, 46, 159, 0.5));
         }
-        
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+
+        @keyframes logoPop {
+          0%, 100% { transform: scale(1) rotate(-3deg); }
+          25% { transform: scale(1.1) rotate(3deg); }
+          50% { transform: scale(1) rotate(-3deg); }
+          75% { transform: scale(1.05) rotate(2deg); }
         }
-        
+
         .title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(2.5rem, 8vw, 4rem);
+          font-family: 'Fredoka', sans-serif;
+          font-size: clamp(3rem, 12vw, 5.5rem);
           font-weight: 700;
-          background: linear-gradient(135deg, #FFB199 0%, #FF8C69 50%, #FFE5B4 100%);
+          background: linear-gradient(135deg, var(--neon-pink) 0%, var(--hot-orange) 25%, var(--lime-pop) 50%, var(--electric-blue) 75%, var(--purple-party) 100%);
+          background-size: 300% 300%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          margin-bottom: 16px;
-          line-height: 1.1;
+          margin-bottom: 8px;
+          line-height: 1;
+          animation: gradientShift 4s ease infinite;
+          text-shadow: 0 0 80px rgba(255, 46, 159, 0.3);
+          letter-spacing: -2px;
         }
-        
+
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .title-sub {
+          font-family: 'Fredoka', sans-serif;
+          font-size: clamp(1rem, 4vw, 1.4rem);
+          font-weight: 500;
+          color: var(--electric-blue);
+          text-transform: uppercase;
+          letter-spacing: 8px;
+          margin-bottom: 24px;
+          opacity: 0.9;
+        }
+
         .subtitle {
-          font-size: 1.25rem;
-          color: rgba(255, 255, 255, 0.7);
+          font-size: 1.2rem;
+          color: rgba(255, 255, 255, 0.75);
           margin-bottom: 48px;
-          max-width: 500px;
+          max-width: 480px;
           margin-left: auto;
           margin-right: auto;
-          line-height: 1.6;
+          line-height: 1.7;
+          font-weight: 400;
         }
-        
+
         .start-button {
-          background: linear-gradient(135deg, #FF8C69 0%, #FF6B4A 100%);
+          background: linear-gradient(135deg, var(--neon-pink) 0%, var(--hot-orange) 100%);
           border: none;
-          padding: 20px 48px;
-          font-size: 1.2rem;
+          padding: 22px 56px;
+          font-size: 1.3rem;
           font-weight: 600;
           color: white;
           border-radius: 60px;
           cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 8px 32px rgba(255, 107, 74, 0.4);
-          font-family: 'DM Sans', sans-serif;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          box-shadow:
+            0 8px 32px rgba(255, 46, 159, 0.4),
+            0 0 0 0 rgba(255, 46, 159, 0.4);
+          font-family: 'Fredoka', sans-serif;
+          letter-spacing: 1px;
+          position: relative;
+          overflow: hidden;
         }
-        
+
+        .start-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          transition: left 0.5s ease;
+        }
+
         .start-button:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 12px 40px rgba(255, 107, 74, 0.5);
+          transform: translateY(-4px) scale(1.05);
+          box-shadow:
+            0 16px 48px rgba(255, 46, 159, 0.5),
+            0 0 0 4px rgba(255, 46, 159, 0.2);
         }
-        
+
+        .start-button:hover::before {
+          left: 100%;
+        }
+
         .features {
           display: flex;
           justify-content: center;
-          gap: 32px;
-          margin-top: 64px;
+          gap: 40px;
+          margin-top: 72px;
           flex-wrap: wrap;
         }
-        
+
         .feature {
           display: flex;
           align-items: center;
-          gap: 8px;
-          color: rgba(255, 255, 255, 0.6);
-          font-size: 0.9rem;
+          gap: 10px;
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.95rem;
+          font-weight: 500;
+          padding: 12px 20px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 40px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease;
         }
-        
+
+        .feature:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: var(--electric-blue);
+          transform: translateY(-2px);
+        }
+
         .feature-icon {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
         
         /* Quiz Screen */
@@ -391,7 +588,7 @@ export default function GiftFinder() {
         
         .progress-fill {
           height: 100%;
-          background: linear-gradient(90deg, #FF8C69, #FFB199);
+          background: linear-gradient(90deg, var(--neon-pink), var(--hot-orange), var(--lime-pop));
           border-radius: 2px;
           transition: width 0.5s ease;
         }
@@ -410,7 +607,7 @@ export default function GiftFinder() {
         }
         
         .question-text {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Fredoka', sans-serif;
           font-size: clamp(1.8rem, 5vw, 2.5rem);
           font-weight: 600;
           margin-bottom: 40px;
@@ -436,9 +633,10 @@ export default function GiftFinder() {
         }
         
         .option:hover {
-          background: rgba(255, 140, 105, 0.15);
-          border-color: rgba(255, 140, 105, 0.4);
+          background: rgba(255, 46, 159, 0.15);
+          border-color: var(--neon-pink);
           transform: translateX(8px);
+          box-shadow: 0 4px 20px rgba(255, 46, 159, 0.2);
         }
         
         .option-icon {
@@ -486,9 +684,10 @@ export default function GiftFinder() {
         }
 
         .relationship-option:hover {
-          background: rgba(255, 140, 105, 0.15);
-          border-color: rgba(255, 140, 105, 0.4);
+          background: rgba(255, 46, 159, 0.15);
+          border-color: var(--neon-pink);
           transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(255, 46, 159, 0.2);
         }
 
         .relationship-icon {
@@ -528,13 +727,13 @@ export default function GiftFinder() {
         .gift-body {
           width: 80px;
           height: 60px;
-          background: linear-gradient(135deg, #FF8C69, #FF6B4A);
+          background: linear-gradient(135deg, var(--neon-pink), var(--purple-party));
           border-radius: 8px;
           position: absolute;
           bottom: 0;
           left: 10px;
         }
-        
+
         .gift-body::before {
           content: '';
           position: absolute;
@@ -543,20 +742,20 @@ export default function GiftFinder() {
           transform: translateX(-50%);
           width: 12px;
           height: 100%;
-          background: #FFE5B4;
+          background: var(--lime-pop);
         }
-        
+
         .gift-lid {
           width: 90px;
           height: 20px;
-          background: linear-gradient(135deg, #FF6B4A, #FF4A2A);
+          background: linear-gradient(135deg, var(--hot-orange), var(--neon-pink));
           border-radius: 4px;
           position: absolute;
           top: 20px;
           left: 5px;
           animation: lidBounce 1s ease-in-out infinite;
         }
-        
+
         .gift-lid::before {
           content: '';
           position: absolute;
@@ -565,7 +764,7 @@ export default function GiftFinder() {
           transform: translateX(-50%);
           width: 30px;
           height: 30px;
-          background: #FFE5B4;
+          background: var(--lime-pop);
           border-radius: 50% 50% 0 0;
         }
         
@@ -612,14 +811,16 @@ export default function GiftFinder() {
         }
         
         .results-title {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Fredoka', sans-serif;
           font-size: clamp(2rem, 6vw, 2.8rem);
           font-weight: 700;
-          background: linear-gradient(135deg, #FFB199 0%, #FF8C69 100%);
+          background: linear-gradient(135deg, var(--neon-pink) 0%, var(--hot-orange) 50%, var(--lime-pop) 100%);
+          background-size: 200% 200%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           margin-bottom: 8px;
+          animation: gradientShift 3s ease infinite;
         }
         
         .results-subtitle {
@@ -644,8 +845,9 @@ export default function GiftFinder() {
         
         .gift-card:hover {
           background: rgba(255, 255, 255, 0.06);
-          border-color: rgba(255, 140, 105, 0.3);
+          border-color: var(--neon-pink);
           transform: translateY(-4px);
+          box-shadow: 0 8px 32px rgba(255, 46, 159, 0.15);
         }
         
         @keyframes cardSlide {
@@ -659,17 +861,18 @@ export default function GiftFinder() {
           left: 24px;
           width: 32px;
           height: 32px;
-          background: linear-gradient(135deg, #FF8C69, #FF6B4A);
+          background: linear-gradient(135deg, var(--neon-pink), var(--purple-party));
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           font-weight: 700;
           font-size: 0.9rem;
+          font-family: 'Fredoka', sans-serif;
         }
         
         .gift-name {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Fredoka', sans-serif;
           font-size: 1.4rem;
           font-weight: 600;
           margin-bottom: 12px;
@@ -689,8 +892,8 @@ export default function GiftFinder() {
         }
         
         .gift-price {
-          background: rgba(255, 140, 105, 0.2);
-          color: #FFB199;
+          background: rgba(191, 255, 0, 0.15);
+          color: var(--lime-pop);
           padding: 6px 14px;
           border-radius: 20px;
           font-size: 0.9rem;
@@ -707,18 +910,20 @@ export default function GiftFinder() {
         .gift-button {
           display: inline-block;
           background: transparent;
-          border: 1px solid rgba(255, 140, 105, 0.5);
-          color: #FFB199;
+          border: 1px solid var(--neon-pink);
+          color: var(--neon-pink);
           padding: 12px 24px;
           border-radius: 30px;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: 600;
+          font-family: 'Fredoka', sans-serif;
           transition: all 0.3s ease;
         }
-        
+
         .gift-button:hover {
-          background: rgba(255, 140, 105, 0.2);
-          border-color: #FF8C69;
+          background: var(--neon-pink);
+          color: white;
+          box-shadow: 0 4px 20px rgba(255, 46, 159, 0.4);
         }
         
         .restart-button {
@@ -732,12 +937,12 @@ export default function GiftFinder() {
           font-size: 1rem;
           cursor: pointer;
           transition: all 0.3s ease;
-          font-family: 'DM Sans', sans-serif;
+          font-family: 'Outfit', sans-serif;
         }
-        
+
         .restart-button:hover {
-          border-color: rgba(255, 255, 255, 0.4);
-          color: #fff;
+          border-color: var(--electric-blue);
+          color: var(--electric-blue);
         }
         
         /* Error Screen */
@@ -770,30 +975,48 @@ export default function GiftFinder() {
       `}</style>
       
       <div className="app">
+        {/* Funky animated background */}
+        <div className="funky-bg">
+          <div className="shape shape-1"></div>
+          <div className="shape shape-2"></div>
+          <div className="shape shape-3"></div>
+          <div className="shape shape-4"></div>
+          <div className="shape shape-5"></div>
+          <div className="confetti confetti-1"></div>
+          <div className="confetti confetti-2"></div>
+          <div className="confetti confetti-3"></div>
+          <div className="confetti confetti-4"></div>
+          <div className="confetti confetti-5"></div>
+          <div className="confetti confetti-6"></div>
+          <div className="confetti confetti-7"></div>
+          <div className="confetti confetti-8"></div>
+        </div>
+
         <div className="container">
           {screen === 'start' && (
             <div className="start-screen">
-              <div className="logo">🎁</div>
-              <h1 className="title">Geschenke-Finder</h1>
+              <div className="logo">🎉</div>
+              <h1 className="title">Birthday Blitz</h1>
+              <p className="title-sub">Gift Finder</p>
               <p className="subtitle">
-                Beantworte 3 lustige Fragen über den Beschenkten und wir zaubern dir 
+                Beantworte ein paar lustige Fragen und wir zaubern dir
                 die perfekten Last-Minute Geschenkideen!
               </p>
               <button className="start-button" onClick={handleStart}>
-                Los geht's! ✨
+                Let's Go! 🚀
               </button>
               <div className="features">
                 <div className="feature">
                   <span className="feature-icon">⚡</span>
-                  <span>Nur 30 Sekunden</span>
+                  <span>30 Sekunden</span>
                 </div>
                 <div className="feature">
                   <span className="feature-icon">🎯</span>
                   <span>Personalisiert</span>
                 </div>
                 <div className="feature">
-                  <span className="feature-icon">💝</span>
-                  <span>Kreativ & Liebevoll</span>
+                  <span className="feature-icon">🤖</span>
+                  <span>KI-Powered</span>
                 </div>
               </div>
             </div>
