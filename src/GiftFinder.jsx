@@ -4,57 +4,57 @@ import { getAffiliateUrl } from './affiliate-config';
 const questions = [
   {
     id: 1,
-    question: "Wenn diese Person ein Snack wäre, welcher?",
-    emoji: "🍿",
+    question: "Die Person wird von Aliens entführt. Was nehmen sie mit?",
+    emoji: "👽",
     options: [
-      { value: "chips", label: "Chips – entspannt, unkompliziert", icon: "🥔" },
-      { value: "sushi", label: "Sushi – kultiviert, anspruchsvoll", icon: "🍣" },
-      { value: "schokolade", label: "Schokolade – genussvoll, emotional", icon: "🍫" },
-      { value: "energie", label: "Energieriegel – aktiv, immer unterwegs", icon: "⚡" }
+      { value: "chips", label: "Die Snack-Schublade – Prioritäten!", icon: "🍕" },
+      { value: "sushi", label: "Die komplette Vinyl-Sammlung", icon: "🎵" },
+      { value: "schokolade", label: "Das Haustier (oder die Pflanze)", icon: "🌱" },
+      { value: "energie", label: "Laufschuhe – auch im All fit bleiben!", icon: "👟" }
     ]
   },
   {
     id: 2,
-    question: "Was macht diese Person am liebsten am Samstagabend?",
-    emoji: "🌙",
+    question: "Diese Person gewinnt 10.000€ – aber muss sie in 24h ausgeben!",
+    emoji: "💸",
     options: [
-      { value: "couch", label: "Netflix & Couch-Paradies", icon: "📺" },
-      { value: "party", label: "Tanzen bis die Füße qualmen", icon: "💃" },
-      { value: "natur", label: "Sterne gucken oder wandern", icon: "🌲" },
-      { value: "kreativ", label: "Basteln, malen, irgendwas erschaffen", icon: "🎨" }
+      { value: "couch", label: "Mega Home-Cinema mit Popcorn-Maschine", icon: "🍿" },
+      { value: "party", label: "Spontan-Trip nach Ibiza mit den Besties", icon: "✈️" },
+      { value: "natur", label: "Camping-Ausrüstung für Weltreise", icon: "🏕️" },
+      { value: "kreativ", label: "Komplettes Kunst-Studio einrichten", icon: "🎨" }
     ]
   },
   {
     id: 3,
-    question: "Welcher Satz fällt bei dieser Person am häufigsten?",
-    emoji: "💬",
+    question: "Zombie-Apokalypse! Was ist die geheime Waffe dieser Person?",
+    emoji: "🧟",
     options: [
-      { value: "praktisch", label: '"Das ist doch unpraktisch!"', icon: "🔧" },
-      { value: "schoen", label: '"Oh, wie schön ist das denn!"', icon: "✨" },
-      { value: "essen", label: '"Wann essen wir?"', icon: "🍽️" },
-      { value: "abenteuer", label: '"Lass uns was Verrücktes machen!"', icon: "🚀" }
+      { value: "praktisch", label: "Schweizer Taschenmesser & Duct Tape", icon: "🔧" },
+      { value: "schoen", label: "Die Zombies mit Style ablenken", icon: "💅" },
+      { value: "essen", label: "Grill aufbauen – die Zombies riechen Steak!", icon: "🥩" },
+      { value: "abenteuer", label: "Parkour bis zum Helikopter auf dem Dach", icon: "🚁" }
     ]
   },
   {
     id: 4,
-    question: "Welche Superkraft würde diese Person wählen?",
-    emoji: "🦸",
+    question: "Ein Flaschengeist erscheint! Was wünscht sich die Person NICHT?",
+    emoji: "🧞",
     options: [
-      { value: "teleport", label: "Teleportation – immer spontan woanders sein", icon: "✈️" },
-      { value: "zeitreise", label: "Zeitreisen – Vergangenheit oder Zukunft erkunden", icon: "⏰" },
-      { value: "gedanken", label: "Gedankenlesen – immer wissen was los ist", icon: "🧠" },
-      { value: "unsichtbar", label: "Unsichtbarkeit – heimlich beobachten", icon: "👻" }
+      { value: "teleport", label: "Unendlich Geld – zu stressig zu verwalten", icon: "💰" },
+      { value: "zeitreise", label: "Ewiges Leben – die Langeweile!", icon: "⏳" },
+      { value: "gedanken", label: "Gedankenlesen – will nicht wissen was Oma denkt", icon: "🙈" },
+      { value: "unsichtbar", label: "Fliegen können – Höhenangst!", icon: "😰" }
     ]
   },
   {
     id: 5,
-    question: "Wo wäre der absolute Traumurlaub dieser Person?",
-    emoji: "🌴",
+    question: "Die Person darf nur noch EINEN Social Media Account behalten!",
+    emoji: "📱",
     options: [
-      { value: "strand", label: "Malediven – Cocktails, Strand & Nichtstun", icon: "🏝️" },
-      { value: "abenteuer", label: "Patagonien – Wandern, Wildnis, Abenteuer", icon: "🏔️" },
-      { value: "stadt", label: "Tokio – Kultur, Essen & Neonlichter", icon: "🗼" },
-      { value: "wellness", label: "Toskana – Wein, Wellness & La Dolce Vita", icon: "🍷" }
+      { value: "strand", label: "Instagram – für die Ästhetik", icon: "📸" },
+      { value: "abenteuer", label: "YouTube – Rabbit Holes forever", icon: "🐰" },
+      { value: "stadt", label: "TikTok – Entertainment non-stop", icon: "🎬" },
+      { value: "wellness", label: "Pinterest – Inspiration tanken", icon: "📌" }
     ]
   }
 ];
